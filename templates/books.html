@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="card">
+
+    <h2>Danh sach sach</h2>
+
+    <div class="filter">
+
+        <strong>Loc theo the loai:</strong>
+
+        <br><br>
+
+        {% if selected_category %}
+            <a href="{{ url_for('books_page') }}">
+                Tat ca
+            </a>
+        {% else %}
+            <a href="{{ url_for('books_page') }}" class="selected">
+                Tat ca
+            </a>
+        {% endif %}
+
+        {% for category in categories %}
+
+            {% if selected_category == category %}
+
+                <a
+                    href="{{ url_for('books_page', category=category) }}"
+                    class="selected"
+                >
+                    {{ category | e }}
+                </a>
+
+            {% else %}
+
+                <a
+                    href="{{ url_for('books_page', category=category) }}"
+                >
+                    {{ category | e }}
+                </a>
+
+            {% endif %}
+
+        {% endfor %}
+
+    </div>
+
+
+    {% if books %}
+
+    <table>
+
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Ten sach</th>
+                <th>Tac gia</th>
+                <th>Nam</th>
+                <th>The loai</th>
+                <th>Trang thai</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            {% for book in books %}
+
+            <tr>
+
+                <td>
+                    {{ book.id }}
+                </td>
+
+                <td>
+                    <a href="{{ url_for('book_detail', book_id=book.id) }}">
+                        {{ book.title | e }}
+                    </a>
+                </td>
+
+                <td>
+                    {{ book.author | e }}
+                </td>
+
+                <td>
+                    {{ book.year }}
+                </td>
+
+                <td>
+                    {{ book.category | e }}
+                </td>
+
+                <td>
+
+                    {% if book.available %}
+
+                        <span class="available">
+                            Co san
+                        </span>
+
+                    {% else %}
+
+                        <span class="unavailable">
+                            Dang duoc muon
+                        </span>
+
+                    {% endif %}
+
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+    {% else %}
+
+        <p>
+            Khong co sach nao thuoc the loai nay.
+        </p>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

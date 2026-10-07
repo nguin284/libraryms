@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="card">
+
+    <h2>Chi tiet sach</h2>
+
+    <table>
+
+        <tr>
+            <th>ID</th>
+            <td>
+                {{ book.id }}
+            </td>
+        </tr>
+
+        <tr>
+            <th>Ten sach</th>
+            <td>
+                {{ book.title | e }}
+            </td>
+        </tr>
+
+        <tr>
+            <th>Tac gia</th>
+            <td>
+                {{ book.author | e }}
+            </td>
+        </tr>
+
+        <tr>
+            <th>Nam xuat ban</th>
+            <td>
+                {{ book.year }}
+            </td>
+        </tr>
+
+        <tr>
+            <th>The loai</th>
+            <td>
+                {{ book.category | e }}
+            </td>
+        </tr>
+
+        <tr>
+            <th>Trang thai</th>
+            <td>
+
+                {% if book.available %}
+
+                    <span class="available">
+                        Co san - Co the muon
+                    </span>
+
+                {% else %}
+
+                    <span class="unavailable">
+                        Dang duoc muon
+                    </span>
+
+                {% endif %}
+
+            </td>
+        </tr>
+
+    </table>
+
+
+    <a
+        href="{{ url_for('books_page') }}"
+        class="back-link"
+    >
+        &larr; Quay lai danh sach
+    </a>
+
+</div>
+
+{% endblock %}

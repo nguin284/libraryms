@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="card error">
+
+    <h1>404</h1>
+
+    <h2>Khong tim thay trang</h2>
+
+    <p>
+        Trang hoac sach ban yeu cau khong ton tai.
+    </p>
+
+    <a href="{{ url_for('books_page') }}">
+        Quay lai danh sach sach
+    </a>
+
+</div>
+
+{% endblock %}
